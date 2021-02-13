@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { createChart, CrosshairMode } from "lightweight-charts";
-import { priceData } from "./priceData";
-import { orders } from "./orderData";
 
 import "./styles.css";
 
@@ -38,8 +36,6 @@ function App() {
       },
     });
 
-    console.log(chart.current);
-
     const candleSeries = chart.current.addCandlestickSeries({
       upColor: "#4bffb5",
       downColor: "#ff4976",
@@ -49,10 +45,14 @@ function App() {
       wickUpColor: "#838ca1",
     });
 
-    candleSeries.setData(priceData);
+    fetch("data.json", )
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data);
+        candleSeries.setData(data.candles);
+        candleSeries.setMarkers(data.orders);
+      });
 
-    // adding custom markers - order data for now
-    candleSeries.setMarkers(orders);
   }, []);
 
   // Resize chart on container resizes.
