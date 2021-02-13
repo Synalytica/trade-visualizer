@@ -45,10 +45,9 @@ function App() {
       wickUpColor: "#838ca1",
     });
 
-    fetch("data.json", )
+    fetch("data.json",)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data);
         candleSeries.setData(data.candles);
         candleSeries.setMarkers(data.orders);
       });
