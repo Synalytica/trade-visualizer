@@ -3,7 +3,7 @@ body,
 #root,
 .App {
   margin: 0;
-  height: 100%;
+  height: 90%;
 }
 
 .App {
@@ -14,4 +14,5 @@ body,
 
 .chart-container {
   flex: 1;
+  min-height: 70vh;
 }
