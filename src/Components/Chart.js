@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import ReactDOM from "react-dom";
 import { createChart, CrosshairMode } from "lightweight-charts";
 
 export default function Chart() {

@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -7,18 +6,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Title from "./Title";
 
-const useStyles = makeStyles((theme) => ({
-  seeMore: {
-    marginTop: theme.spacing(3),
-  },
-}));
-
-function createTable(row) {
-  return JSON.parse(row);
-}
-
 export default function Orders() {
-  const classes = useStyles();
   var orders = [];
 
   fetch("data.json")
@@ -34,7 +22,7 @@ export default function Orders() {
 
   for (var i = 0; i < orderData.length; i++) {
     if (i % 2 === 0) {
-      currentOrder["entryTime"] = new Date(orderData[i].time).toTimeString();
+      currentOrder["entryTime"] = new Date(orderData[i].time * 1000).toString();
       tagStringArray = orderData[i].text.split(" ");
       currentOrder["entryPrice"] = tagStringArray[tagStringArray.length - 1];
       if (orderData[i].color === "green") {
@@ -48,7 +36,7 @@ export default function Orders() {
         currentOrder["direction"] = "Short";
       }
     } else {
-      currentOrder["exitTime"] = new Date(orderData[i].time).toTimeString();
+      currentOrder["exitTime"] = new Date(orderData[i].time * 1000).toString();
       tagStringArray = orderData[i].text.split(" ");
       currentOrder["exitPrice"] = tagStringArray[tagStringArray.length - 1];
       orders.push(currentOrder);

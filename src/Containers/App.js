@@ -1,6 +1,4 @@
-import React, { useEffect, useRef } from "react";
-import ReactDOM from "react-dom";
-import { createChart, CrosshairMode } from "lightweight-charts";
+import React from "react";
 import "./App.css";
 import Orders from "../Components/Orders";
 import Chart from "../Components/Chart";
