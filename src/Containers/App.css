@@ -16,3 +16,19 @@ body,
   flex: 1;
   min-height: 70vh;
 }
+
+.orders-container {
+  flex: 1;
+}
+
+.summary-container {
+  width: 20vw;
+  min-height: 70vh;
+  float: right;
+}
+
+#grid-1 {
+  min-height: 70vh;
+  display: flex;
+  flex-wrap: wrap;
+}

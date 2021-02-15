@@ -7,8 +7,10 @@ import Summary from "../Components/Summary";
 function App() {
   return (
     <div className="App">
-      <Summary />
-      <Chart />
+      <div id="grid-1">
+        <Summary />
+        <Chart />
+      </div>
       <Orders />
     </div>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -7,6 +7,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Title from "./Title";
 
 export default function Orders() {
+  const ordersContainerRef = useRef();
   var orders = [];
 
   fetch("data.json")
@@ -46,33 +47,35 @@ export default function Orders() {
 
   return (
     <React.Fragment>
-      <Title>Orders</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">Entry time</TableCell>
-            <TableCell align="center">Direction</TableCell>
-            <TableCell align="center">Entry price</TableCell>
-            <TableCell align="center">Exit price</TableCell>
-            <TableCell align="center">Exit time</TableCell>
-            <TableCell align="center">Result</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {orders.map((row) => {
-            return (
-              <TableRow key={row.entryTime}>
-                <TableCell align="center">{row.entryTime}</TableCell>
-                <TableCell align="center">{row.direction}</TableCell>
-                <TableCell align="right">{row.entryPrice}</TableCell>
-                <TableCell align="left">{row.exitPrice}</TableCell>
-                <TableCell align="center">{row.exitTime}</TableCell>
-                <TableCell align="center">{row.result}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+      <div ref={ordersContainerRef} className="orders-container">
+        <Title>Orders</Title>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Entry time</TableCell>
+              <TableCell align="center">Direction</TableCell>
+              <TableCell align="center">Entry price</TableCell>
+              <TableCell align="center">Exit price</TableCell>
+              <TableCell align="center">Exit time</TableCell>
+              <TableCell align="center">Result</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {orders.map((row) => {
+              return (
+                <TableRow key={row.entryTime}>
+                  <TableCell align="center">{row.entryTime}</TableCell>
+                  <TableCell align="center">{row.direction}</TableCell>
+                  <TableCell align="right">{row.entryPrice}</TableCell>
+                  <TableCell align="left">{row.exitPrice}</TableCell>
+                  <TableCell align="center">{row.exitTime}</TableCell>
+                  <TableCell align="center">{row.result}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </div>
     </React.Fragment>
   );
 }
