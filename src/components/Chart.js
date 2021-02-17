@@ -66,8 +66,9 @@ export default function Chart() {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
+      <h3>Trade Chart</h3>
       <div ref={chartContainerRef} className="chart-container" />
-    </React.Fragment>
+    </>
   );
 }
