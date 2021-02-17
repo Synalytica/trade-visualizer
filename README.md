@@ -44,3 +44,16 @@ npm install
 - Each order is a marker object as defined
   [here](https://github.com/tradingview/lightweight-charts/blob/master/docs/series-basics.md#setmarkers)
 
+- Build the docker image
+
+```bash
+docker build -t synalytica/viz-engine .
+```
+
+- Run the image
+
+```bash
+docker run -e DEBUG=1 -v $PWD:/app -p 8000:3000 --rm -it synalytica/viz-engine
+# or in production
+docker run -e DEBUG=0 -v $PWD:/app -p 80:3000 --rm -d -it synalytica/viz-engine
+```
