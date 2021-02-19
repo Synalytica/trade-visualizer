@@ -42,9 +42,10 @@ export default function Chart() {
       wickUpColor: "#838ca1",
     });
 
-    fetch("data.json")
+    fetch("../data.json")
       .then((resp) => resp.json())
       .then((data) => {
+        console.log(data.candles);
         candleSeries.setData(data.candles);
         candleSeries.setMarkers(data.orders);
       });
@@ -67,7 +68,7 @@ export default function Chart() {
 
   return (
     <>
-      <h3>Trade Chart</h3>
+      <h2>Trade Chart</h2>
       <div ref={chartContainerRef} className="chart-container" />
     </>
   );

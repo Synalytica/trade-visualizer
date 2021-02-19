@@ -21,8 +21,8 @@ export default function Orders() {
               params.value === "LONG" ? (
                 <TrendingUpIcon />
               ) : (
-                <TrendingDownIcon />
-              )
+                  <TrendingDownIcon />
+                )
             }
             label={params.value}
             variant={params.value === "LONG" ? "outlined" : "default"}
@@ -77,7 +77,7 @@ export default function Orders() {
         width: "100%",
       }}
     >
-      <h3>Trades</h3>
+      <h2>Trades</h2>
       <DataGrid
         loading={loading}
         pageSize={10}

@@ -24,13 +24,13 @@ function App() {
         </Toolbar>
       </AppBar>
       <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Chart />
+        </Grid>
         <Grid item xs={12} md={4}>
           <Summary />
         </Grid>
         <Grid item xs={12} md={8}>
-          <Chart />
-        </Grid>
-        <Grid item xs={12}>
           <Orders />
         </Grid>
       </Grid>
