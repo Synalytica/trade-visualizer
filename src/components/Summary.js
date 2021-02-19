@@ -22,7 +22,7 @@ const Summary = () => {
   ) : (
     <div>
       <h2>Useful Statistics</h2>
-      <div>{metrics["overall"]}</div>
+      <div>{metrics}</div>
     </div>
   );
 };
