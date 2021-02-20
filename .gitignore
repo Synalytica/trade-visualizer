@@ -131,3 +131,6 @@ dist
 
 # data file
 public/data.json
+
+# env file
+.envrc

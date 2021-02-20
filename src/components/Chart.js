@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { createChart, CrosshairMode } from "lightweight-charts";
+import { createChart, CrosshairMode, isBusinessDay } from "lightweight-charts";
 
 export default function Chart() {
   const chartContainerRef = useRef();
@@ -10,9 +10,33 @@ export default function Chart() {
     chart.current = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
+      localization: {
+        locale: 'en-US',
+        dateFormat: 'MM/dd',
+        timeFormatter: utcTime => {
+          let timestamp = new Date(utcTime * 1000);
+          if (isBusinessDay(utcTime))
+            return utcTime;
+          return timestamp.toLocaleString("en-US", { timeZoneName: "short" });
+        },
+      },
+      timeScale: {
+        timeVisible: true,
+        visible: true,
+        secondsVisible: true,
+        borderColor: "#485c7b",
+      },
       layout: {
         backgroundColor: "#253248",
         textColor: "rgba(255, 255, 255, 0.9)",
+      },
+      watermark: {
+        color: '#FFFFFF',
+        visible: true,
+        text: 'BTCUSDTPERP',
+        fontSize: 24,
+        horzAlign: 'left',
+        vertAlign: 'bottom',
       },
       grid: {
         vertLines: {
@@ -27,9 +51,7 @@ export default function Chart() {
       },
       priceScale: {
         borderColor: "#485c7b",
-      },
-      timeScale: {
-        borderColor: "#485c7b",
+        drawTicks: false,
       },
     });
 
@@ -45,7 +67,6 @@ export default function Chart() {
     fetch("../data.json")
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data.candles);
         candleSeries.setData(data.candles);
         candleSeries.setMarkers(data.orders);
       });
