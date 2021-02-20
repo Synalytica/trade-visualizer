@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import Chip from "@material-ui/core/Chip";
 import CloseIcon from "@material-ui/icons/Close";
 import DoneIcon from "@material-ui/icons/Done";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import TrendingDownIcon from "@material-ui/icons/TrendingDown";
 import { DataGrid } from "@material-ui/data-grid";
-import loadOrders from "../actions/loadOrders";
 
 export default function Orders() {
   const columns = [
@@ -21,8 +20,8 @@ export default function Orders() {
               params.value === "LONG" ? (
                 <TrendingUpIcon />
               ) : (
-                  <TrendingDownIcon />
-                )
+                <TrendingDownIcon />
+              )
             }
             label={params.value}
             variant={params.value === "LONG" ? "outlined" : "default"}
@@ -30,27 +29,9 @@ export default function Orders() {
         );
       },
     },
-    {
-      field: "entryTime",
-      headerName: "Timestamp (entry)",
-      flex: 1,
-      renderCell: (params) => {
-        return (
-          `${params.value.toLocaleTimeString('en-GB')} ${params.value.toLocaleDateString()}`
-        )
-      }
-    },
+    { field: "entryTime", headerName: "Timestamp (entry)", flex: 1 },
     { field: "entryPrice", headerName: "Price (entry)", flex: 1 },
-    {
-      field: "exitTime",
-      headerName: "Timestamp (exit)",
-      flex: 1,
-      renderCell: (params) => {
-        return (
-          `${params.value.toLocaleTimeString('en-GB')} ${params.value.toLocaleDateString()}`
-        )
-      }
-    },
+    { field: "exitTime", headerName: "Timestamp (exit)", flex: 1 },
     { field: "exitPrice", headerName: "Price (exit)", flex: 1 },
     {
       field: "duration",
@@ -79,14 +60,15 @@ export default function Orders() {
       },
     },
   ];
-  const loading = useSelector((state) => state.orders.loading);
-  const orders = useSelector((state) => state.orders.data);
-  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading);
+  const orders = useSelector((state) => state.orders);
+
+  /* const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadOrders());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); */
 
   return (
     <div
@@ -95,7 +77,7 @@ export default function Orders() {
         width: "100%",
       }}
     >
-      <h2>Trades</h2>
+      <h3>Trades</h3>
       <DataGrid
         loading={loading}
         pageSize={10}
