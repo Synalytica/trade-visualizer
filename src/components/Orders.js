@@ -29,9 +29,27 @@ export default function Orders() {
         );
       },
     },
-    { field: "entryTime", headerName: "Timestamp (entry)", flex: 1 },
+    {
+      field: "entryTime",
+      headerName: "Timestamp (entry)",
+      flex: 1,
+      renderCell: (params) => {
+        return `${params.value.toLocaleTimeString(
+          "en-GB"
+        )} ${params.value.toLocaleDateString()}`;
+      },
+    },
     { field: "entryPrice", headerName: "Price (entry)", flex: 1 },
-    { field: "exitTime", headerName: "Timestamp (exit)", flex: 1 },
+    {
+      field: "exitTime",
+      headerName: "Timestamp (exit)",
+      flex: 1,
+      renderCell: (params) => {
+        return `${params.value.toLocaleTimeString(
+          "en-GB"
+        )} ${params.value.toLocaleDateString()}`;
+      },
+    },
     { field: "exitPrice", headerName: "Price (exit)", flex: 1 },
     {
       field: "duration",
